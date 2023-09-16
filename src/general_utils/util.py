@@ -107,6 +107,7 @@ def getNamenoExt(path_tif):
     return (os.path.splitext(os.path.basename(path_tif))[0])    
 
 
+
 # Get list of files inside this folder
 def list_list(path, extension):
     path_data = []
