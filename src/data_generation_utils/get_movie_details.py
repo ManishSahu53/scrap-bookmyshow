@@ -82,7 +82,7 @@ class GetMovieDetails:
 
         data = []
 
-        for i, a in tqdm(enumerate(theatre_element_list)):
+        for i, a in enumerate(theatre_element_list):
             try:
                 titles = a.find_element(By.CLASS_NAME, '__title')
                 listing_info = a.find_elements(By.CLASS_NAME, 'listing-info')
