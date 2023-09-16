@@ -43,8 +43,9 @@ current_date = str(datetime.now().strftime("%Y%m%d"))
 
 movie_data_loader = data_loader.MovieDataLoder(config.path_data_dir)
 movie_index = 0
-date_index = 0
 movie_city = movie_data_loader.city_list[movie_index]
+
+date_index = movie_data_loader.city_date_mapping[movie_city].index(current_date)
 movie_date = movie_data_loader.city_date_mapping[movie_city][date_index]
 
 # Row 1

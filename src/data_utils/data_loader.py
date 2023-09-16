@@ -75,7 +75,7 @@ class MovieDataLoder:
 
     
     def _get_folder_list(self, path_data_dir):
-        return os.listdir(path=path_data_dir)    
+        return os.listdir(path=path_data_dir)
         
     def _read_csv(self, path_csv):
         return pd.read_csv(path_csv)
