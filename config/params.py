@@ -9,7 +9,7 @@ class MovieConfig:
 
     path_data_dir = '/Users/manish.sahu/Downloads/tiler/scrap-bookmyshow/data/'
     location_list = [
-        'bhopal',
+        # 'bhopal',
         'bengaluru',
         'national-capital-region-ncr',
         'mumbai',
