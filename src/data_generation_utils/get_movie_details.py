@@ -12,9 +12,11 @@ import pandas as pd
 from tqdm import tqdm
 from bs4 import BeautifulSoup
 import matplotlib.pyplot as plt
+from fake_useragent import UserAgent
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
 
 
@@ -50,9 +52,21 @@ class GetMovieDetails:
         }
         return headers
 
+    def _get_fake_user_agent(self):
+        options = Options()
+        options.add_argument("window-size=1400,600")
+        ua = UserAgent()
+        user_agent = ua['google chrome']
+        
+        options.add_argument(f'user-agent={user_agent}')
+        return options
+    
     def _get_chrome_driver(self):
         # driver = webdriver.Chrome(ChromeDriverManager().install())
-        driver = webdriver.Chrome()
+        options = self._get_fake_user_agent()
+                
+        driver = webdriver.Chrome(options=options)
+        # driver = webdriver.Chrome()
         driver.get(self.path_movie_url)
         return driver
 

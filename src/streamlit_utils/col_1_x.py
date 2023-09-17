@@ -8,16 +8,15 @@ from src.data_utils.data_loader import MovieDataLoder
 class Column_1_X_Loader:
     def __init__(self, movie_data_loader: MovieDataLoder, date):
         self.movie_data_loader = movie_data_loader
-        self.date = date
 
     def get_col_1_1(self, col_1_1, city_list):
         movie_city = col_1_1.selectbox('Select City', city_list, )
         return movie_city
 
-    def get_col_1_2(self, col_1_2, movie_city):
+    def get_col_1_2(self, col_1_2, movie_city, date):
         city_df = self.movie_data_loader.get_city_data(movie_city)
         
-        date_city_df = self.movie_data_loader.get_date_data(data_df=city_df, date=self.date)
+        date_city_df = self.movie_data_loader.get_date_data(data_df=city_df, date=date)
         
         cinema_title_list = self.movie_data_loader.get_label_list(
             date_city_df, label_column='cinema_title')
@@ -45,10 +44,10 @@ class Column_1_X_Loader:
         
         return cinema_title_list, movie_list
 
-    def get_col_1_3(self, col_1_3, movie_city):
+    def get_col_1_3(self, col_1_3, movie_city, date):
         city_df = self.movie_data_loader.get_city_data(movie_city)
         
-        date_city_df = self.movie_data_loader.get_date_data(data_df=city_df, date=self.date)
+        date_city_df = self.movie_data_loader.get_date_data(data_df=city_df, date=date)
         
         data_movie_screen = self.movie_data_loader.get_movie_screen_count(
             city_df=date_city_df)

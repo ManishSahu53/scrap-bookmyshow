@@ -49,7 +49,7 @@ try:
     date_index = movie_data_loader.city_date_mapping[movie_city].index(current_date)
 except:
     date_index = 0
-    
+
 movie_date = movie_data_loader.city_date_mapping[movie_city][date_index]
 
 # Row 1
@@ -66,14 +66,14 @@ col_2_x_loader = col_2_x.Column_2_X_Loader(movie_data_loader=movie_data_loader,
 movie_city = col_1_x_loader.get_col_1_1(col_1_1, movie_data_loader.city_list)
 
 # Row 1 Column 1 - Cinema List
-cinema_title_list, movie_list = col_1_x_loader.get_col_1_2(col_1_1, movie_city)
+cinema_title_list, movie_list = col_1_x_loader.get_col_1_2(col_1_1, movie_city, date=movie_date)
 
 # Row 1 Column 2 - Movie Dates
 movie_date = col_1_2.selectbox('Select Date', movie_data_loader.city_date_mapping[movie_city],
                                index=date_index)
 
 # Row 1 Column 3
-movie_screen_df = col_1_x_loader.get_col_1_3(col_1_3, movie_city)
+movie_screen_df = col_1_x_loader.get_col_1_3(col_1_3, movie_city, date=movie_date)
 
 # col_1_1
 
