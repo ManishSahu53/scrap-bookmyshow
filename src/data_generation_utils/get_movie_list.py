@@ -12,11 +12,12 @@ import pandas as pd
 from tqdm import tqdm
 from bs4 import BeautifulSoup
 import matplotlib.pyplot as plt
+from fake_useragent import UserAgent
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
-
 
 class GetMoviesList:
     def __init__(self, path_movie_list_url, location, date):
@@ -27,17 +28,29 @@ class GetMoviesList:
 
     def _get_header(self):
         headers = {
-            'Referer': 'https://in.bookmyshow.com/explore/movies-bengaluru?languages=hindi',
+            # 'Referer': 'https://in.bookmyshow.com/explore/movies-bengaluru?languages=hindi',
             'sec-ch-ua': '"Not_A Brand";v="99", "Google Chrome";v="109", "Chromium";v="109"',
             'sec-ch-ua-mobile': '?0',
             'sec-ch-ua-platform': "Linux",
             'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36',
         }
         return headers
+    
+    def _get_fake_user_agent(self):
+        options = Options()
+        options.add_argument("window-size=1400,600")
+        ua = UserAgent()
+        user_agent = ua['google chrome']
+        
+        options.add_argument(f'user-agent={user_agent}')
+        return options
 
     def _get_chrome_driver(self):
         # driver = webdriver.Chrome(ChromeDriverManager().install())
-        driver = webdriver.Chrome()
+        
+        options = self._get_fake_user_agent()
+                
+        driver = webdriver.Chrome(options=options)
         driver.get(self.path_movie_list_url)
 
         # Scroll to buttom slowly to load all movies
